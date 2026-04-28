@@ -607,16 +607,14 @@
     width: 30px; height: 30px;
     display: grid; place-items: center;
     background: oklch(0.74 0.17 52);
-    color: #181613;
-    font-family: "Instrument Serif", serif;
-    font-style: italic;
-    font-size: 18px;
-    line-height: 1;
     border-radius: 999px;
     margin-right: 4px;
-    padding-bottom: 2px;
+    padding: 0;
+    overflow: hidden;
     text-decoration: none;
   }
+  .pill .logo:hover { background: oklch(0.74 0.17 52); }
+  .pill .logo img { width: 20px; height: 20px; object-fit: contain; }
   .pill a {
     padding: 8px 14px;
     border-radius: 999px;
@@ -639,7 +637,7 @@
 
 <!-- Sticky pill nav -->
 <nav class="pill" id="pill" style="transform:translate(-50%,0);opacity:1;">
-  <a href="/" class="logo">D</a>
+  <a href="/" class="logo"><img src="/portfolio_logo.svg" alt="DC" style="width:22px;height:22px;"></a>
   <a href="/#work">Work</a>
   <a href="/#about">About</a>
   <a href="/#contact" class="cta">Let's talk</a>
