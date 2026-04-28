@@ -306,16 +306,14 @@
     width: 30px; height: 30px;
     display: grid; place-items: center;
     background: oklch(0.74 0.17 52);
-    color: #181613;
-    font-family: "Instrument Serif", serif;
-    font-style: italic;
-    font-size: 18px;
-    line-height: 1;
     border-radius: 999px;
     margin-right: 4px;
-    padding-bottom: 2px;
+    padding: 0;
+    overflow: hidden;
     text-decoration: none;
   }
+  .pill .logo:hover { background: oklch(0.74 0.17 52); }
+  .pill .logo img { width: 20px; height: 20px; object-fit: contain; }
   .pill a {
     padding: 8px 14px;
     border-radius: 999px;

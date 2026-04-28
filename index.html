@@ -90,15 +90,13 @@
     width: 30px; height: 30px;
     display: grid; place-items: center;
     background: var(--accent);
-    color: var(--accent-ink);
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 18px;
-    line-height: 1;
     border-radius: 999px;
     margin-right: 4px;
-    padding-bottom: 2px;
+    padding: 0;
+    overflow: hidden;
   }
+  .pill .logo:hover { background: var(--accent); }
+  .pill .logo img { width: 20px; height: 20px; object-fit: contain; }
   .pill a {
     padding: 8px 14px;
     border-radius: 999px;
