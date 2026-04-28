@@ -115,302 +115,327 @@
   }
   .pill .cta:hover { background: var(--accent); color: var(--accent-ink); }
 
-  /* ——— Hero Stage (v2) ——— */
-  .stage {
+  /* ——— New Hero ——— */
+  .hero-new {
     position: relative;
-    padding: 120px 0 60px;
-    text-align: center;
+    padding: 140px 0 80px;
+    overflow: hidden;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  .stage .kicker {
+
+  /* Gradient blobs */
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.12;
+    pointer-events: none;
+    will-change: transform;
+  }
+  .blob-1 {
+    width: 600px; height: 600px;
+    background: var(--accent);
+    top: -10%; right: -5%;
+    animation: blobDrift1 20s ease-in-out infinite;
+  }
+  .blob-2 {
+    width: 400px; height: 400px;
+    background: oklch(0.62 0.22 295);
+    bottom: 5%; left: -8%;
+    animation: blobDrift2 25s ease-in-out infinite;
+  }
+  .blob-3 {
+    width: 300px; height: 300px;
+    background: oklch(0.60 0.20 255);
+    top: 40%; left: 50%;
+    opacity: 0.06;
+    animation: blobDrift3 18s ease-in-out infinite;
+  }
+  @keyframes blobDrift1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-60px, 40px) scale(1.08); }
+    66% { transform: translate(30px, -30px) scale(0.95); }
+  }
+  @keyframes blobDrift2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(50px, -30px) scale(1.1); }
+    66% { transform: translate(-40px, 20px) scale(0.92); }
+  }
+  @keyframes blobDrift3 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-80px, 40px); }
+  }
+
+  /* Dot grid */
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, var(--ink-faint) 0.5px, transparent 0.5px);
+    background-size: 48px 48px;
+    opacity: 0.12;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at 50% 50%, #000 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 20%, transparent 70%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  @media (max-width: 720px) { .hero-content { padding: 0 20px; } }
+
+  /* Kicker */
+  .hero-kicker {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 40px;
     font-family: var(--mono);
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.14em;
     color: var(--ink-soft);
-    margin-bottom: 18px;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
   }
-  .stage .kicker .avail {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 4px 10px;
+  .hero-kicker .avail {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px;
     border: 1px solid var(--rule);
     border-radius: 999px;
     color: var(--ink);
   }
-  .stage .kicker .avail::before {
-    content: "";
-    width: 6px; height: 6px; border-radius: 50%;
+  .avail-dot {
+    width: 7px; height: 7px; border-radius: 50%;
     background: #7ED957;
     box-shadow: 0 0 0 3px rgba(126,217,87,.18);
+    animation: pulse 2.5s ease-in-out infinite;
   }
-  .stage .name {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(64px, 10.5vw, 148px);
-    line-height: 0.93;
-    letter-spacing: -0.03em;
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(126,217,87,.18); }
+    50% { box-shadow: 0 0 0 8px rgba(126,217,87,.06); }
+  }
+
+  /* Heading */
+  .hero-heading {
     margin: 0;
+    line-height: 1;
   }
-  .stage .name em { color: var(--accent); font-style: italic; }
-  .stage .tag {
-    margin-top: 22px;
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: clamp(20px, 2.4vw, 30px);
+  .hero-line {
+    display: block;
+  }
+  .hero-hello {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: clamp(24px, 3.5vw, 42px);
     color: var(--ink-soft);
     letter-spacing: -0.01em;
+    display: block;
+    margin-bottom: 12px;
   }
-  .stage .tag .word { color: var(--ink); }
-
-  /* ——— Scene (floating monitors) ——— */
-  .scene {
+  .hero-name-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: clamp(16px, 2.5vw, 32px);
+    flex-wrap: wrap;
+  }
+  .hero-diego {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(72px, 12vw, 160px);
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    animation: fadeSlideUp 1s cubic-bezier(.2,.8,.2,1) 0.2s both;
+  }
+  .hero-cerezo {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(72px, 12vw, 160px);
+    letter-spacing: -0.035em;
+    color: var(--accent);
+    display: block;
     position: relative;
-    margin: 64px auto 0;
-    max-width: 1100px;
-    aspect-ratio: 1100 / 660;
-    perspective: 1400px;
+    z-index: 2;
+    padding: 0 8px;
   }
-  .scene::before {
+
+  /* Figma selection box */
+  .figma-select {
+    position: relative;
+    display: inline-block;
+    animation: fadeSlideUp 1s cubic-bezier(.2,.8,.2,1) 0.4s both;
+  }
+  .figma-select::before {
     content: "";
     position: absolute;
-    left: 10%; right: 10%;
-    bottom: 6%;
-    height: 40px;
-    background: radial-gradient(ellipse at center, color-mix(in oklab, var(--accent) 35%, transparent) 0%, transparent 70%);
-    filter: blur(8px);
-    opacity: .5;
-    pointer-events: none;
+    inset: -6px -10px;
+    border: 1.5px solid var(--accent);
+    border-radius: 2px;
+    opacity: 0;
+    animation: selectAppear 0.4s ease 1.4s forwards;
+  }
+  @keyframes selectAppear {
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
   }
 
-  /* Monitor base */
-  .mon {
+  /* Figma resize handles */
+  .figma-handle {
     position: absolute;
-    border-radius: 12px;
-    background: #1f1d1a;
-    box-shadow: 0 30px 60px -25px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,255,255,.04);
-    overflow: visible;
+    width: 8px; height: 8px;
+    background: #fff;
+    border: 1.5px solid var(--accent);
+    border-radius: 1px;
+    z-index: 3;
+    opacity: 0;
+    animation: selectAppear 0.3s ease 1.6s forwards;
   }
-  [data-theme="light"] .mon { background: #e8e2d6; box-shadow: 0 30px 60px -25px rgba(0,0,0,.22), inset 0 0 0 1px rgba(0,0,0,.05); }
-  .mon .bezel {
-    position: absolute; inset: 10px;
-    border-radius: 6px;
-    background: #0c0c0b;
-    overflow: hidden;
-  }
-  [data-theme="light"] .mon .bezel { background: #e8e2d6; }
-  .mon .stand {
+  .figma-handle.tl { top: -10px; left: -14px; }
+  .figma-handle.tr { top: -10px; right: -14px; }
+  .figma-handle.bl { bottom: -10px; left: -14px; }
+  .figma-handle.br { bottom: -10px; right: -14px; }
+
+  /* Figma "Hug x Hug" label */
+  .figma-label {
     position: absolute;
-    left: 50%; bottom: -26px;
-    width: 14%; height: 26px;
-    background: inherit;
+    bottom: -28px; left: 50%;
     transform: translateX(-50%);
-    border-radius: 0 0 6px 6px;
-    filter: brightness(.85);
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+    opacity: 0;
+    animation: selectAppear 0.3s ease 1.8s forwards;
   }
-  .mon .shelf {
-    position: absolute;
-    left: 50%; top: -54px;
-    transform: translateX(-50%);
-    display: flex; gap: 8px;
-    background: #1f1d1a;
-    padding: 8px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px -15px rgba(0,0,0,.6);
+
+  @keyframes fadeSlideUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
-  [data-theme="light"] .mon .shelf { background: #e8e2d6; }
-  .mon .shelf .app {
-    width: 34px; height: 34px;
-    border-radius: 8px;
-    display: grid; place-items: center;
+
+  /* Subtitle */
+  .hero-sub {
+    margin-top: 40px;
+    font-size: clamp(16px, 1.8vw, 20px);
+    color: var(--ink-soft);
+    max-width: 48ch;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+  }
+  .hero-role {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Tool badges */
+  .hero-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+  }
+  .tool-badge {
+    padding: 7px 16px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
     font-family: var(--mono);
     font-size: 12px;
-    font-weight: 600;
-    color: #fff;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    opacity: 0;
+    animation: badgePop 0.5s cubic-bezier(.2,.8,.2,1) calc(1.2s + var(--delay)) forwards;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tool-badge:hover { border-color: var(--accent); color: var(--ink); }
+  @keyframes badgePop {
+    0% { opacity: 0; transform: translateY(10px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  /* Monitor positions & floats */
-  .mon-center {
-    top: 18%; left: 50%;
-    width: 44%; aspect-ratio: 16/10;
-    transform: translateX(-50%);
-    z-index: 3;
-    animation: floatA 7s ease-in-out infinite;
-  }
-  .mon-left {
-    top: 28%; left: 4%;
-    width: 30%; aspect-ratio: 16/10;
-    z-index: 2;
-    animation: floatB 9s ease-in-out infinite;
-  }
-  .mon-right {
-    top: 24%; right: 4%;
-    width: 30%; aspect-ratio: 16/10;
-    z-index: 2;
-    animation: floatC 8s ease-in-out infinite;
-  }
-  body.no-float .mon { animation: none !important; }
-  @keyframes floatA { 0%,100%{ transform: translateX(-50%) translateY(0);} 50%{ transform: translateX(-50%) translateY(-10px);} }
-  @keyframes floatB { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-8px);} }
-  @keyframes floatC { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-12px);} }
-
-  /* Monitor content */
-  .mon .bezel .screen { position: absolute; inset: 0; padding: 10px; }
-  .tag-badge {
+  /* Animated cursors */
+  .hero-cursor {
     position: absolute;
-    right: 10px; top: 10px;
-    width: 42px; height: 28px;
-    display: grid; place-items: center;
-    border: 1.5px solid var(--accent);
-    color: var(--accent);
-    border-radius: 4px;
+    display: flex; align-items: flex-start; gap: 4px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+  @media (max-width: 820px) { .hero-cursor { display: none; } }
+  .cursor-label {
     font-family: var(--mono);
-    font-weight: 600;
     font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px 4px 4px 0;
+    margin-top: 16px;
+    white-space: nowrap;
+    font-weight: 500;
     letter-spacing: 0.02em;
   }
 
-  /* Center: canvas of connected cards */
-  .canvas-scene { position: absolute; inset: 12px; }
-  .canvas-scene .c-card {
-    position: absolute;
-    background: color-mix(in oklab, var(--ink) 8%, #0c0c0b);
-    border-radius: 3px;
-    box-shadow: 0 0 0 1px color-mix(in oklab, var(--ink) 18%, transparent);
+  /* Diego — top right, away from name */
+  .cursor-diego {
+    top: 22%; right: 10%;
+    animation: cursorAppear 0.6s ease 2.2s forwards, cursorDiego 8s ease-in-out 2.8s infinite;
   }
-  [data-theme="light"] .c-card { background: color-mix(in oklab, var(--ink) 8%, #e8e2d6); }
-  .canvas-scene .c-card.n1 { top: 12%; left: 8%;  width: 22%; height: 26%; }
-  .canvas-scene .c-card.n2 { top: 8%;  left: 38%; width: 18%; height: 20%; }
-  .canvas-scene .c-card.n3 { top: 10%; left: 62%; width: 22%; height: 24%; background: color-mix(in oklab, var(--accent) 60%, #0c0c0b); }
-  .canvas-scene .c-card.n4 { top: 54%; left: 10%; width: 24%; height: 26%; }
-  .canvas-scene .c-card.n5 { top: 58%; left: 42%; width: 20%; height: 22%; }
-  .canvas-scene .c-card.n6 { top: 54%; left: 70%; width: 22%; height: 26%; background: color-mix(in oklab, var(--ink) 12%, #0c0c0b); }
-  .canvas-scene svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-
-  /* Left: 3D render room */
-  .render-scene { position: absolute; inset: 12px; overflow: hidden; border-radius: 2px; }
-  .render-scene .rm {
-    position: absolute; inset: 10% 14%;
-    background: linear-gradient(180deg, #1a1028 0%, #0d0620 100%);
-    border-radius: 2px; overflow: hidden;
-  }
-  .render-scene .rm::before {
-    content: ""; position: absolute; left: 20%; top: 25%; width: 18%; height: 16%;
-    background: color-mix(in oklab, var(--accent) 85%, #ff6ab7);
-    box-shadow: 0 0 20px color-mix(in oklab, var(--accent) 70%, transparent);
-    border-radius: 1px;
-  }
-  .render-scene .rm::after {
-    content: ""; position: absolute; right: 18%; top: 35%; width: 14%; height: 12%;
-    background: oklch(0.7 0.2 300);
-    box-shadow: 0 0 18px oklch(0.7 0.2 300 / .7);
-    border-radius: 1px;
-  }
-  .render-scene .floor {
-    position: absolute; left: 0; right: 0; bottom: 0; height: 35%;
-    background: linear-gradient(180deg, transparent, rgba(255,105,180,.15));
-    transform: perspective(400px) rotateX(50deg); transform-origin: bottom;
+  @keyframes cursorDiego {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-12px, 6px); }
+    50% { transform: translate(8px, -4px); }
+    75% { transform: translate(-6px, -10px); }
   }
 
-  /* Right: Framer / code waveforms */
-  .dj-scene { position: absolute; inset: 12px; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
-  .dj-scene .wave {
-    height: 34%;
-    background-image:
-      linear-gradient(90deg, oklch(0.7 0.2 140) 2px, transparent 2px),
-      linear-gradient(90deg, oklch(0.7 0.2 320) 2px, transparent 2px),
-      linear-gradient(90deg, oklch(0.8 0.18 80) 2px, transparent 2px);
-    background-size: 8px 100%, 14px 100%, 22px 100%;
-    background-position: 0 0, 3px 0, 6px 0;
-    mask-image: radial-gradient(ellipse at center, #000 60%, transparent 100%);
-    opacity: .9;
+  /* Recruiter — mid right */
+  .cursor-recruiter {
+    top: 52%; right: 6%;
+    animation: cursorAppear 0.6s ease 2.6s forwards, cursorRecruiter 10s ease-in-out 3.2s infinite;
   }
-  .dj-scene .bars { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
-  .dj-scene .bars span { display: block; height: 4px; border-radius: 2px; }
-  .dj-scene .bars span:nth-child(1) { width: 80%; background: oklch(0.7 0.2 140); }
-  .dj-scene .bars span:nth-child(2) { width: 55%; background: oklch(0.8 0.18 80); }
-  .dj-scene .bars span:nth-child(3) { width: 72%; background: oklch(0.7 0.2 320); }
-  .dj-scene .bars span:nth-child(4) { width: 40%; background: var(--accent); }
+  @keyframes cursorRecruiter {
+    0%, 100% { transform: translate(0, 0); }
+    30% { transform: translate(-20px, 12px); }
+    60% { transform: translate(10px, -8px); }
+  }
 
-  /* Desk + figure */
-  .desk {
-    position: absolute;
-    left: 50%; bottom: 4%;
-    transform: translateX(-50%);
-    width: 44%;
-    z-index: 4;
+  /* Friends — bottom left */
+  .cursor-friend {
+    bottom: 28%; left: 8%;
+    animation: cursorAppear 0.6s ease 3.0s forwards, cursorFriend 9s ease-in-out 3.6s infinite;
   }
-  .desk .surface {
+  @keyframes cursorFriend {
+    0%, 100% { transform: translate(0, 0); }
+    35% { transform: translate(18px, -10px); }
+    65% { transform: translate(-8px, 14px); }
+  }
+
+  /* Client — bottom right */
+  .cursor-client {
+    bottom: 22%; right: 16%;
+    animation: cursorAppear 0.6s ease 3.4s forwards, cursorClient 11s ease-in-out 4.0s infinite;
+  }
+  @keyframes cursorClient {
+    0%, 100% { transform: translate(0, 0); }
+    40% { transform: translate(-14px, -8px); }
+    70% { transform: translate(12px, 10px); }
+  }
+
+  @keyframes cursorAppear {
+    0% { opacity: 0; transform: translate(40px, -20px); }
+    100% { opacity: 1; transform: translate(0, 0); }
+  }
+
+  /* Meta footer (reused from before) */
+  .hero-new .meta-footer {
     position: relative;
-    height: 16px;
-    background: linear-gradient(180deg, #2a2825 0%, #181614 100%);
-    border-radius: 2px;
-  }
-  [data-theme="light"] .desk .surface { background: linear-gradient(180deg, #d4cdbe 0%, #b9b1a0 100%); }
-  .desk .leg {
-    position: absolute; bottom: -56px;
-    width: 6px; height: 56px;
-    background: #18161a;
-  }
-  [data-theme="light"] .desk .leg { background: #9c9584; }
-  .desk .leg.l { left: 8%; }
-  .desk .leg.r { right: 8%; }
-
-  .deskmon {
-    position: absolute;
-    left: 56%; bottom: 16px;
-    width: 34%; aspect-ratio: 5/3;
-    background: #2a2825;
-    border-radius: 6px 6px 2px 2px;
-    padding: 6px;
-    box-shadow: 0 8px 20px -10px rgba(0,0,0,.6);
-  }
-  .deskmon .inside {
-    position: absolute; inset: 6px;
-    border-radius: 3px;
-    background: linear-gradient(115deg, oklch(0.82 0.15 30), oklch(0.78 0.18 160), oklch(0.7 0.22 280));
-    display: grid; place-items: center;
-    font-family: var(--serif); font-style: italic; font-size: clamp(16px, 2vw, 26px);
-    color: #fff;
-    letter-spacing: -0.01em;
-  }
-  .deskmon .base {
-    position: absolute; left: 50%; bottom: -10px;
-    transform: translateX(-50%);
-    width: 30%; height: 5px;
-    background: #1e1c19;
-    border-radius: 0 0 4px 4px;
-  }
-
-  /* Figure silhouette */
-  .figure {
-    position: absolute;
-    left: 16%;
-    bottom: 10px;
-    width: 20%;
-    aspect-ratio: 1/1.4;
-  }
-  .figure .head { position: absolute; top: 8%; left: 30%; width: 32%; aspect-ratio: 1; background: #c9a07a; border-radius: 50%; }
-  .figure .hair { position: absolute; top: 5%; left: 28%; width: 36%; height: 16%; background: #1a1917; border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%; }
-  .figure .body { position: absolute; top: 28%; left: 14%; width: 64%; height: 50%; background: #1a3a8a; border-radius: 30% 30% 12% 12%; }
-  .figure .arm { position: absolute; top: 44%; left: 8%; width: 80%; height: 10%; background: #1a3a8a; border-radius: 4px; }
-  .figure .laptop { position: absolute; top: 52%; left: 10%; width: 78%; height: 8%; background: #2a2825; border-radius: 2px; }
-  .figure .legs { position: absolute; top: 72%; left: 18%; width: 55%; height: 22%; background: #0f0f0f; border-radius: 4px; }
-  .figure .foot { position: absolute; top: 92%; width: 22%; height: 8%; background: #f5f1ea; border-radius: 3px; }
-  .figure .foot.l { left: 18%; } .figure .foot.r { left: 46%; }
-  .figure .bench { position: absolute; bottom: -2%; left: 8%; width: 80%; height: 6%; background: #18161a; border-radius: 2px; }
-
-  /* Props */
-  .prop { position: absolute; bottom: 4%; border-radius: 2px; background: #18161a; }
-  .prop.stool-right { right: 4%; width: 10%; height: 10%; }
-  .prop.stool-right::before {
-    content:""; position:absolute; left:25%; top:-25%; width:50%; height:40%;
-    background:#0b0b0b; border-radius:50%;
-    box-shadow: 0 0 18px color-mix(in oklab, var(--accent) 60%, transparent);
-  }
-
-  /* Stage footer meta */
-  .stage .meta-footer {
-    margin-top: 60px;
+    z-index: 2;
+    max-width: 1120px;
+    margin: 80px auto 0;
+    padding: 0 32px;
     display: grid; grid-template-columns: 1fr 1fr 1fr;
     gap: 24px;
     padding-top: 24px;
@@ -422,14 +447,14 @@
     color: var(--ink-soft);
     text-align: left;
   }
-  .stage .meta-footer b { color: var(--ink); font-weight: 500; }
-  .stage .meta-footer .pill-tag {
+  .hero-new .meta-footer b { color: var(--ink); font-weight: 500; }
+  .hero-new .meta-footer .pill-tag {
     display: inline-flex; align-items: center; gap: 8px;
     border: 1px solid var(--rule);
     padding: 6px 10px; border-radius: 999px;
   }
-  .stage .meta-footer .gdot { width: 7px; height: 7px; border-radius: 50%; background: #7ED957; }
-  @media (max-width: 900px) { .stage .meta-footer { grid-template-columns: 1fr; gap: 10px; } }
+  .hero-new .meta-footer .gdot { width: 7px; height: 7px; border-radius: 50%; background: #7ED957; }
+  @media (max-width: 900px) { .hero-new .meta-footer { grid-template-columns: 1fr; gap: 10px; } }
 
   /* Marquee */
   .marquee-rule {
@@ -831,115 +856,97 @@
 
 <!-- Sticky pill nav -->
 <nav class="pill" id="pill">
-  <div class="logo">D</div>
+  <a href="/" class="logo"><img src="/portfolio_logo.svg" alt="DC" style="width:22px;height:22px;"></a>
   <a href="#work">Work</a>
   <a href="#about">About</a>
   <a href="#contact" class="cta">Let's talk</a>
 </nav>
 
-<main class="wrap">
+<main>
 
-  <!-- ——— Hero Stage (v2 scene) ——— -->
-  <section class="stage">
-    <div class="kicker reveal">
-      <span class="avail">Open to opportunities</span>
-      <span>Diego Cerezo · Atlanta, GA</span>
+  <section class="hero-new">
+    <!-- Flowing gradient blobs -->
+    <div class="hero-blob blob-1"></div>
+    <div class="hero-blob blob-2"></div>
+    <div class="hero-blob blob-3"></div>
+
+    <!-- Grid dots background -->
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+      <div class="hero-kicker reveal">
+        <span class="avail"><span class="avail-dot"></span>Open to opportunities</span>
+        <span class="hero-loc">Atlanta, GA</span>
+      </div>
+
+      <h1 class="hero-heading">
+        <span class="hero-line hero-line-1 reveal">
+          <span class="hero-hello">Hello, I'm</span>
+        </span>
+        <span class="hero-line hero-line-2 reveal">
+          <span class="hero-name-wrap">
+            <span class="hero-diego">Diego</span>
+            <!-- Figma selection box around "Cerezo" -->
+            <span class="figma-select">
+              <span class="figma-handle tl"></span>
+              <span class="figma-handle tr"></span>
+              <span class="figma-handle bl"></span>
+              <span class="figma-handle br"></span>
+              <span class="figma-label">Hug × Hug</span>
+              <span class="hero-cerezo">Cerezo</span>
+            </span>
+          </span>
+        </span>
+      </h1>
+
+      <p class="hero-sub reveal">
+        <span class="hero-role">UX & Product Designer</span> solving real problems with
+        detail-oriented, research-driven design.
+      </p>
+
+      <!-- Floating tool badges -->
+      <div class="hero-tools reveal">
+        <span class="tool-badge" style="--delay:0s">Figma</span>
+        <span class="tool-badge" style="--delay:0.1s">Framer</span>
+        <span class="tool-badge" style="--delay:0.2s">React</span>
+        <span class="tool-badge" style="--delay:0.3s">Next.js</span>
+        <span class="tool-badge" style="--delay:0.4s">iOS</span>
+        <span class="tool-badge" style="--delay:0.5s">Supabase</span>
+        <span class="tool-badge" style="--delay:0.6s">Illustrator</span>
+        <span class="tool-badge" style="--delay:0.7s">Photoshop</span>
+        <span class="tool-badge" style="--delay:0.8s">InDesign</span>
+        <span class="tool-badge" style="--delay:0.9s">After Effects</span>
+      </div>
+
+      <!-- Multiple collaborative cursors -->
+      <div class="hero-cursor cursor-diego">
+        <svg width="18" height="22" viewBox="0 0 18 22" fill="none">
+          <path d="M1 1L7 19L9.5 12.5L16 10L1 1Z" fill="var(--accent)" stroke="var(--accent-ink)" stroke-width="1"/>
+        </svg>
+        <span class="cursor-label" style="background:var(--accent);color:var(--accent-ink);">Diego C.</span>
+      </div>
+
+      <div class="hero-cursor cursor-recruiter">
+        <svg width="18" height="22" viewBox="0 0 18 22" fill="none">
+          <path d="M1 1L7 19L9.5 12.5L16 10L1 1Z" fill="#7B61FF" stroke="#fff" stroke-width="1"/>
+        </svg>
+        <span class="cursor-label" style="background:#7B61FF;color:#fff;">Recruiter</span>
+      </div>
+
+      <div class="hero-cursor cursor-friend">
+        <svg width="18" height="22" viewBox="0 0 18 22" fill="none">
+          <path d="M1 1L7 19L9.5 12.5L16 10L1 1Z" fill="#3ECF83" stroke="#fff" stroke-width="1"/>
+        </svg>
+        <span class="cursor-label" style="background:#3ECF83;color:#0E0E0F;">Friends</span>
+      </div>
+
+      <div class="hero-cursor cursor-client">
+        <svg width="18" height="22" viewBox="0 0 18 22" fill="none">
+          <path d="M1 1L7 19L9.5 12.5L16 10L1 1Z" fill="#618ACC" stroke="#fff" stroke-width="1"/>
+        </svg>
+        <span class="cursor-label" style="background:#618ACC;color:#fff;">Client</span>
+      </div>
     </div>
-    <h1 class="name reveal d1">Diego <em>Cerezo</em></h1>
-    <p class="tag reveal d2"><span class="word">UX &amp; Product</span> design through a <span class="word">different</span> lens.</p>
-
-    <div class="scene reveal d3" id="scene">
-
-      <!-- LEFT monitor: Figma / design -->
-      <div class="mon mon-left">
-        <div class="shelf">
-          <div class="app" style="background:#0acf83">F</div>
-          <div class="app" style="background:#fff; color:#111">Fr</div>
-          <div class="app" style="background:#1a1a2e; color:#fff">Ai</div>
-          <div class="app" style="background:var(--accent)">Ps</div>
-        </div>
-        <div class="bezel">
-          <div class="screen">
-            <div class="render-scene">
-              <div class="rm"><div class="floor"></div></div>
-            </div>
-            <div class="tag-badge">UX</div>
-          </div>
-        </div>
-        <div class="stand"></div>
-      </div>
-
-      <!-- CENTER monitor: canvas w/ cards -->
-      <div class="mon mon-center">
-        <div class="bezel">
-          <div class="screen">
-            <div class="canvas-scene">
-              <div class="c-card n1"></div>
-              <div class="c-card n2"></div>
-              <div class="c-card n3"></div>
-              <div class="c-card n4"></div>
-              <div class="c-card n5"></div>
-              <div class="c-card n6"></div>
-              <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M18,22 C28,24 28,16 40,17" stroke="currentColor" stroke-width="0.3" fill="none" opacity=".4"/>
-                <path d="M50,20 C58,22 58,22 66,22" stroke="currentColor" stroke-width="0.3" fill="none" opacity=".4"/>
-                <path d="M22,38 C26,50 22,54 22,62" stroke="currentColor" stroke-width="0.3" fill="none" opacity=".4"/>
-                <path d="M48,30 C54,48 54,58 54,60" stroke="currentColor" stroke-width="0.3" fill="none" opacity=".4"/>
-                <path d="M74,36 C78,48 78,54 80,58" stroke="currentColor" stroke-width="0.3" fill="none" opacity=".4"/>
-              </svg>
-            </div>
-            <div class="tag-badge">Ui</div>
-          </div>
-        </div>
-        <div class="stand"></div>
-      </div>
-
-      <!-- RIGHT monitor: code / dev -->
-      <div class="mon mon-right">
-        <div class="shelf">
-          <div class="app" style="background:#333">TS</div>
-          <div class="app" style="background:#000">▲</div>
-          <div class="app" style="background:linear-gradient(135deg,#61dafb,#20232a)">⚛</div>
-          <div class="app" style="background:var(--accent)">/</div>
-        </div>
-        <div class="bezel">
-          <div class="screen">
-            <div class="dj-scene">
-              <div class="wave"></div>
-              <div class="bars"><span></span><span></span><span></span><span></span></div>
-              <div class="wave" style="height:24%; opacity:.6"></div>
-            </div>
-            <div class="tag-badge">Dev</div>
-          </div>
-        </div>
-        <div class="stand"></div>
-      </div>
-
-      <!-- Props / desk / figure -->
-      <div class="prop stool-right"></div>
-
-      <div class="figure">
-        <div class="hair"></div>
-        <div class="head"></div>
-        <div class="body"></div>
-        <div class="arm"></div>
-        <div class="laptop"></div>
-        <div class="legs"></div>
-        <div class="foot l"></div>
-        <div class="foot r"></div>
-        <div class="bench"></div>
-      </div>
-
-      <div class="desk">
-        <div class="deskmon">
-          <div class="inside">hello</div>
-          <div class="base"></div>
-        </div>
-        <div class="surface"></div>
-        <div class="leg l"></div>
-        <div class="leg r"></div>
-      </div>
-    </div><!-- /scene -->
 
     <div class="meta-footer reveal">
       <div><b>Diego Cerezo</b> · UX/UI & Product Designer · Atlanta, GA</div>
@@ -948,6 +955,7 @@
     </div>
   </section>
 
+  <div class="wrap">
   <!-- Marquee -->
   <div class="marquee-rule reveal">
     <div class="track">
@@ -1100,6 +1108,7 @@
     </div>
   </section>
 
+  </div><!-- /wrap -->
 </main>
 
 <!-- Tweaks panel -->

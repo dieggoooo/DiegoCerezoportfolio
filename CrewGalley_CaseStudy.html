@@ -586,12 +586,68 @@
   /* ——— Scroll reveal ——— */
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
   .reveal.on { opacity: 1; transform: none; }
+  .pill {
+    position: fixed;
+    top: 22px; left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 60;
+    display: flex; align-items: center; gap: 4px;
+    padding: 6px;
+    background: rgba(14,14,15, 0.75);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border: 1px solid rgba(242,238,230,0.08);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    box-shadow: 0 8px 30px rgba(0,0,0,.35);
+  }
+  .pill .logo {
+    width: 30px; height: 30px;
+    display: grid; place-items: center;
+    background: oklch(0.74 0.17 52);
+    color: #181613;
+    font-family: "Instrument Serif", serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1;
+    border-radius: 999px;
+    margin-right: 4px;
+    padding-bottom: 2px;
+    text-decoration: none;
+  }
+  .pill a {
+    padding: 8px 14px;
+    border-radius: 999px;
+    color: #F2EEE6;
+    text-decoration: none;
+    transition: background .2s, color .2s;
+  }
+  .pill a:hover { background: #252321; }
+  .pill .cta {
+    background: #F2EEE6;
+    color: #0E0E0F;
+    padding: 8px 14px;
+    border-radius: 999px;
+    margin-left: 4px;
+  }
+  .pill .cta:hover { background: oklch(0.74 0.17 52); color: #181613; }
 </style>
 </head>
 <body>
 
+<!-- Sticky pill nav -->
+<nav class="pill" id="pill" style="transform:translate(-50%,0);opacity:1;">
+  <a href="/" class="logo">D</a>
+  <a href="/#work">Work</a>
+  <a href="/#about">About</a>
+  <a href="/#contact" class="cta">Let's talk</a>
+</nav>
+
+
 <!-- Back button -->
-<a class="back" href="/">
+<a class="back" style="display:none;" href="/">
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M3 7L6.5 3.5M3 7L6.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
   All work
 </a>
