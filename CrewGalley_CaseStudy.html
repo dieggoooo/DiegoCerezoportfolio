@@ -45,7 +45,7 @@
   /* ——— Layout ——— */
   .wrap { max-width: 1060px; margin: 0 auto; padding: 0 32px; }
   .wrap--narrow { max-width: 760px; margin: 0 auto; padding: 0 32px; }
-  @media (max-width: 720px) { .wrap, .wrap--narrow { padding: 0 48px; } }
+  @media (max-width: 720px) { .wrap, .wrap--narrow { padding: 0 48px !important; } }
 
   /* ——— Back nav ——— */
   .back {
@@ -634,7 +634,7 @@
 
   /* Mobile fixes */
   @media (max-width: 720px) {
-    .wrap, .wrap--narrow, .wrap--wide { padding: 0 48px; }
+    .wrap, .wrap--narrow, .wrap--wide { padding: 0 48px !important; }
   }
   @media (max-width: 600px) {
     .pill { padding: 4px; gap: 2px; font-size: 12px; }
