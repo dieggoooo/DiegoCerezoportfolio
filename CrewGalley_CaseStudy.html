@@ -633,6 +633,9 @@
   .pill .cta:hover { background: oklch(0.74 0.17 52); color: #181613; }
 
   /* Mobile fixes */
+  @media (max-width: 720px) {
+    .wrap, .wrap--narrow, .wrap--wide { padding: 0 28px; }
+  }
   @media (max-width: 600px) {
     .pill { padding: 4px; gap: 2px; font-size: 12px; }
     .pill a { padding: 6px 10px; white-space: nowrap; }
@@ -640,15 +643,12 @@
     .pill .logo { width: 28px; height: 28px; min-width: 28px; min-height: 28px; }
     .pill .logo img { width: 18px; height: 18px; }
     .case-hero { padding: 120px 0 60px; }
-    .case-hero h1 { font-size: clamp(32px, 8vw, 96px); }
     .meta-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
     .cs-section { padding: 64px 0 48px; }
-    .cs-section__title { font-size: clamp(26px, 6vw, 52px); }
     .features { grid-template-columns: 1fr; }
     .perspectives { grid-template-columns: 1fr; }
     .stats { grid-template-columns: 1fr 1fr; }
     .process { grid-template-columns: 1fr 1fr; }
-    .next-project h3 { font-size: clamp(26px, 6vw, 64px); }
   }
 </style>
 </head>
