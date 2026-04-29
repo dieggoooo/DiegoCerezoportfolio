@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Diego Cerezo: UX & Product Designer</title>
+<title>Diego Cerezo — UX & Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -65,7 +65,7 @@
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
   @media (max-width: 720px) { .wrap { padding: 0 20px; } }
 
-  /* Sticky pill nav */
+  /* ——— Sticky pill nav ——— */
   .pill {
     position: fixed;
     top: 22px; left: 50%;
@@ -113,7 +113,7 @@
   }
   .pill .cta:hover { background: var(--accent); color: var(--accent-ink); }
 
-  /* New Hero */
+  /* ——— New Hero ——— */
   .hero-new {
     position: relative;
     padding: 140px 0 80px;
@@ -377,7 +377,7 @@
     letter-spacing: 0.02em;
   }
 
-  /* Diego, top right, away from name */
+  /* Diego — top right, away from name */
   .cursor-diego {
     top: 22%; right: 10%;
     animation: cursorAppear 0.6s ease 2.2s forwards, cursorDiego 8s ease-in-out 2.8s infinite;
@@ -389,7 +389,7 @@
     75% { transform: translate(-6px, -10px); }
   }
 
-  /* Recruiter, mid right */
+  /* Recruiter — mid right */
   .cursor-recruiter {
     top: 52%; right: 6%;
     animation: cursorAppear 0.6s ease 2.6s forwards, cursorRecruiter 10s ease-in-out 3.2s infinite;
@@ -400,7 +400,7 @@
     60% { transform: translate(10px, -8px); }
   }
 
-  /* Friends, bottom left */
+  /* Friends — bottom left */
   .cursor-friend {
     bottom: 28%; left: 8%;
     animation: cursorAppear 0.6s ease 3.0s forwards, cursorFriend 9s ease-in-out 3.6s infinite;
@@ -411,7 +411,7 @@
     65% { transform: translate(-8px, 14px); }
   }
 
-  /* Client, bottom right */
+  /* Client — bottom right */
   .cursor-client {
     bottom: 22%; right: 16%;
     animation: cursorAppear 0.6s ease 3.4s forwards, cursorClient 11s ease-in-out 4.0s infinite;
@@ -454,12 +454,12 @@
   .hero-new .meta-footer .gdot { width: 7px; height: 7px; border-radius: 50%; background: #7ED957; }
   @media (max-width: 900px) { .hero-new .meta-footer { grid-template-columns: 1fr; gap: 10px; } }
 
-  /* Mobile fixes */
+  /* ——— Mobile fixes ——— */
   @media (max-width: 600px) {
     .pill { padding: 5px; gap: 2px; font-size: 12px; }
-    .pill a { padding: 6px 10px; }
-    .pill .cta { padding: 6px 10px; }
-    .pill .logo { width: 28px; height: 28px; }
+    .pill a { padding: 6px 10px; white-space: nowrap; }
+    .pill .cta { padding: 6px 10px; white-space: nowrap; }
+    .pill .logo { width: 28px; height: 28px; min-width: 28px; min-height: 28px; }
     .pill .logo img { width: 18px; height: 18px; }
 
     .hero-new { padding: 120px 0 60px; min-height: 80vh; }
@@ -511,7 +511,7 @@
   .marquee-rule .track .star { color: var(--accent); font-family: var(--serif); font-size: 18px; transform: translateY(-1px); }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* Section label */
+  /* ——— Section label ——— */
   .section-label {
     font-family: var(--mono);
     font-size: 11px;
@@ -523,7 +523,7 @@
   }
   [data-show-labels="false"] .section-label { display: none; }
 
-  /* Project cards (v3) */
+  /* ——— Project cards (v3) ——— */
   .cards { display: flex; flex-direction: column; gap: 20px; padding-bottom: 40px; }
   .card {
     position: relative;
@@ -612,7 +612,7 @@
   .card--olive { --surface: #1E1F18; --surface-2: #27291F; }
   .card--ink   { --surface: #131313; --surface-2: #1A1A1A; }
 
-  /* In-card mocks */
+  /* ——— In-card mocks ——— */
   .mock { position: absolute; inset: 0; display: grid; place-items: center; }
 
   /* Phone mock */
@@ -743,7 +743,7 @@
   }
   .mapmock .card-chip strong { display: block; font-family: var(--serif); font-size: 16px; letter-spacing: 0; text-transform: none; margin-top: 2px; }
 
-  /* Experience */
+  /* ——— Experience ——— */
   .experience { padding: 40px 0 100px; }
   .exp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 64px; padding: 28px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
   @media (max-width: 820px) { .exp-grid { grid-template-columns: 1fr; gap: 28px; } }
@@ -754,7 +754,7 @@
   .exp-item .sub { color: var(--ink-soft); font-size: 13px; }
   .exp-item .yr { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.06em; }
 
-  /* Writing */
+  /* ——— Writing ——— */
   .writing { padding: 40px 0 100px; }
   .writing ul { list-style: none; margin: 0; padding: 0; }
   .writing li {
@@ -774,7 +774,7 @@
   .writing li:hover .t { color: var(--accent); font-style: italic; }
   .writing li .d { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.08em; text-transform: uppercase; }
 
-  /* Footer / contact */
+  /* ——— Footer / contact ——— */
   .foot { padding: 80px 0 60px; border-top: 1px solid var(--rule); margin-top: 40px; }
   .foot__big {
     font-family: var(--serif);
@@ -805,14 +805,14 @@
   .foot__row a:hover { color: var(--accent); }
   .foot__colophon { margin-top: 64px; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; display: flex; justify-content: space-between; }
 
-  /* Reveal */
+  /* ——— Reveal ——— */
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
   .reveal.on { opacity: 1; transform: none; }
   .reveal.d1 { transition-delay: .08s; }
   .reveal.d2 { transition-delay: .18s; }
   .reveal.d3 { transition-delay: .28s; }
 
-  /* Tweaks panel */
+  /* ——— Tweaks panel ——— */
   .tweaks {
     position: fixed;
     right: 20px; bottom: 20px;
@@ -835,7 +835,7 @@
   .tweaks .row button:hover { border-color: var(--ink-soft); }
   .tweaks .row button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 
-  /* Visual work gallery */
+  /* ——— Visual work gallery ——— */
   .gallery { padding: 40px 0 100px; }
   .gallery-grid {
     display: grid;
@@ -984,7 +984,7 @@
     <div class="meta-footer reveal">
       <div><b>Diego Cerezo</b> · UX/UI & Product Designer · Atlanta, GA</div>
       <div><span class="pill-tag"><span class="gdot"></span> Available · Open to roles</span></div>
-      <div>BFA GSU · UX Cert Georgia Tech · <b id="clock">-</b></div>
+      <div>BFA GSU · UX Cert Georgia Tech · <b id="clock">—</b></div>
     </div>
   </section>
 
@@ -1023,7 +1023,7 @@
     </div>
   </div>
 
-  <!-- --- Work Cards (v3) --- -->
+  <!-- ——— Work Cards (v3) ——— -->
   <section id="work" class="wrap" style="padding:0;">
     <div class="section-label reveal">Selected work · 2021 – 2026</div>
     <div class="cards">
@@ -1032,9 +1032,9 @@
         <div class="card__head">
           <div class="card__idx">01 / <em>iOS App</em></div>
           <div>
-            <div class="card__title">CrewGalley: Airline crew inventory app</div>
+            <div class="card__title">CrewGalley — Airline crew inventory app</div>
             <div class="card__blurb">Designed and independently shipped a native iOS app for airline crew galley management. Full Supabase backend, multi-tenant RLS, App Store published. Boeing 777-300ER focused.</div>
-            <div class="card__meta"><span>2024 to Present</span><span>Independent</span><span>iOS · Next.js · Supabase</span></div>
+            <div class="card__meta"><span>2024 — Present</span><span>Independent</span><span>iOS · Next.js · Supabase</span></div>
           </div>
         </div>
         <div class="card__stage" style="padding:0;">
@@ -1049,7 +1049,7 @@
         <div class="card__head">
           <div class="card__idx">02 / <em>UX Case Study</em></div>
           <div>
-            <div class="card__title">Venmo: Rethinking shared expenses</div>
+            <div class="card__title">Venmo — Rethinking shared expenses</div>
             <div class="card__blurb">Concept redesign simplifying group payments, improving financial organization, and streamlining payment flows. Introduced a "Trips" feature that 87% of users preferred over Splitwise.</div>
             <div class="card__meta"><span>UX Research · UX/UI Design</span><span>Concept</span><span>Mobile · Figma</span></div>
           </div>
@@ -1066,7 +1066,7 @@
         <div class="card__head">
           <div class="card__idx">03 / <em>UX/UI Design</em></div>
           <div>
-            <div class="card__title">HireFlow: Modernizing job application tracking</div>
+            <div class="card__title">HireFlow — Modernizing job application tracking</div>
             <div class="card__blurb">Designed a centralized SaaS platform for job seekers to track applications, manage documents, and visualize search progress. Users reported saving 2+ hours per week vs. spreadsheets.</div>
             <div class="card__meta"><span>UX Research · UX/UI Design</span><span>End-to-End</span><span>Web · Figma</span></div>
           </div>
@@ -1083,13 +1083,13 @@
         <div class="card__head">
           <div class="card__idx">04 / <em>UX Case Study</em></div>
           <div>
-            <div class="card__title">BRTR: A new & simpler form of bartering</div>
+            <div class="card__title">BRTR — A new & simpler form of bartering</div>
             <div class="card__blurb">End-to-end case study for a peer-to-peer barter and trade app. The goal: get users to barter more confidently and intuitively than ever before. User research, journey mapping, wireframes to high-fidelity prototype.</div>
             <div class="card__meta"><span>UX Research · UX/UI Design</span><span>Case Study</span><span>Mobile · Figma</span></div>
           </div>
         </div>
         <div class="card__stage" style="padding:0;">
-          <img src="./BRTR_cover_photo.png" alt="BRTR: Bartering Simplified" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
+          <img src="./BRTR_cover_photo.png" alt="BRTR — Bartering Simplified" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
         </div>
         <div class="card__arrow" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -1099,21 +1099,22 @@
     </div>
   </section>
 
-  <!-- --- Experience --- -->
+  <!-- ——— Experience ——— -->
   <section id="about" class="experience">
     <div class="section-label reveal">Experience · Clients · Tools</div>
     <div class="exp-grid">
       <div class="exp-col reveal">
         <h5>Experience</h5>
-        <div class="exp-item"><div><div class="role">UX Designer</div><div class="sub">InFlight Logistics</div></div><div class="yr">25-</div></div>
+        <div class="exp-item"><div><div class="role">UX Designer</div><div class="sub">InFlight Logistics</div></div><div class="yr">25—</div></div>
         <div class="exp-item"><div><div class="role">Graphic Design Intern</div><div class="sub">Federal Reserve Bank of Atlanta</div></div><div class="yr">24</div></div>
-        <div class="exp-item"><div><div class="role">Product Design Intern</div><div class="sub">Business Student Insider</div></div><div class="yr">23-24</div></div>
+        <div class="exp-item"><div><div class="role">Product Design Intern</div><div class="sub">Business Student Insider</div></div><div class="yr">23—24</div></div>
         <div class="exp-item"><div><div class="role">UX/UI Design Intern</div><div class="sub">Plutonic</div></div><div class="yr">23</div></div>
       </div>
       <div class="exp-col reveal">
         <h5>Education</h5>
         <div class="exp-item"><div class="role">UX Design Certificate</div><div class="yr">GT</div></div>
         <div class="exp-item"><div class="role">BFA Studio Art / Graphic Design</div><div class="yr">GSU</div></div>
+        <div class="exp-item"><div class="role">Self-taught iOS / Next.js dev</div><div class="yr">—</div></div>
       </div>
       <div class="exp-col reveal">
         <h5>Tools of the trade</h5>
@@ -1125,7 +1126,7 @@
     </div>
   </section>
 
-  <!-- --- Contact --- -->
+  <!-- ——— Contact ——— -->
   <section id="contact" class="foot">
     <h2 class="foot__big reveal">Have something in the works? <em>Let's</em> <a href="mailto:diegotcerezo@gmail.com">talk</a>.</h2>
     <div class="foot__row reveal">
@@ -1136,7 +1137,7 @@
     </div>
     <div class="foot__colophon">
       <span>© Diego Cerezo · 2026</span>
-      <span>Built with care · Atlanta, GA · <span id="clock2">-</span></span>
+      <span>Built with care · Atlanta, GA · <span id="clock2">—</span></span>
     </div>
   </section>
 
@@ -1236,7 +1237,7 @@
     }
   }, { passive: true });
 
-  // Clock, Atlanta time
+  // Clock — Atlanta time
   function tickClock() {
     const opts = { hour: '2-digit', minute: '2-digit', timeZone: 'America/New_York', hour12: false };
     const t = new Intl.DateTimeFormat('en-US', opts).format(new Date());
