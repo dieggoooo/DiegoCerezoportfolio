@@ -46,10 +46,16 @@
     --surface: #FBF7EF;
     --surface-2: #F0EADF;
     --ink: #181613;
-    --ink-soft: #5a544c;
-    --ink-faint: #a49e93;
+    --ink-soft: #4a443b;
+    --ink-faint: #8a8378;
     --rule: rgba(24,22,19,0.10);
   }
+  [data-theme="light"] .hero-blob { opacity: 0.08; }
+  [data-theme="light"] .card--coral { --surface: #F9F2ED; --surface-2: #F0E7DD; }
+  [data-theme="light"] .card--cool  { --surface: #EEF1F5; --surface-2: #E4E9F0; }
+  [data-theme="light"] .card--navy  { --surface: #EDF0F6; --surface-2: #E2E6F0; }
+  [data-theme="light"] .card--olive { --surface: #F2F3EC; --surface-2: #E8EAE0; }
+  [data-theme="light"] .card--ink   { --surface: #ECECEC; --surface-2: #E2E2E2; }
   [data-accent="chartreuse"] { --accent: oklch(0.88 0.17 118); }
   [data-accent="cobalt"]     { --accent: oklch(0.60 0.20 255); --accent-ink: #F2EEE6; }
   [data-accent="violet"]     { --accent: oklch(0.62 0.22 295); --accent-ink: #F2EEE6; }
@@ -70,6 +76,41 @@
   }
   a { color: inherit; text-decoration: none; }
   ::selection { background: var(--accent); color: var(--accent-ink); }
+
+  /* Accessibility: skip link */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    z-index: 200;
+    padding: 10px 20px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 0 0 8px 8px;
+    text-decoration: none;
+    transition: top .2s;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* Accessibility: focus-visible outlines */
+  *:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .pill a:focus-visible,
+  .pill .cta:focus-visible {
+    outline-offset: 2px;
+  }
+  .card:focus-visible {
+    outline-offset: 4px;
+    border-radius: 22px;
+  }
 
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
   @media (max-width: 720px) { .wrap { padding: 0 20px; } }
@@ -277,7 +318,7 @@
   .figma-select::before {
     content: "";
     position: absolute;
-    inset: -6px -10px;
+    inset: -6px -10px -6px -4px;
     border: 1.5px solid var(--accent);
     border-radius: 2px;
     opacity: 0;
@@ -299,9 +340,9 @@
     opacity: 0;
     animation: selectAppear 0.3s ease 1.6s forwards;
   }
-  .figma-handle.tl { top: -10px; left: -14px; }
+  .figma-handle.tl { top: -10px; left: -8px; }
   .figma-handle.tr { top: -10px; right: -14px; }
-  .figma-handle.bl { bottom: -10px; left: -14px; }
+  .figma-handle.bl { bottom: -10px; left: -8px; }
   .figma-handle.br { bottom: -10px; right: -14px; }
 
   /* Figma "Hug x Hug" label */
@@ -366,24 +407,15 @@
     100% { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  /* Animated cursors */
+  /* Animated cursors — label-free colored pointers */
   .hero-cursor {
     position: absolute;
-    display: flex; align-items: flex-start; gap: 4px;
     opacity: 0;
     pointer-events: none;
     z-index: 10;
   }
-  @media (max-width: 820px) { .hero-cursor { display: none; } }
-  .cursor-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 4px 4px 4px 0;
-    margin-top: 16px;
-    white-space: nowrap;
-    font-weight: 500;
-    letter-spacing: 0.02em;
+  @media (max-width: 820px) {
+    .hero-cursor svg { width: 14px; height: 17px; }
   }
 
   /* Diego. top right, away from name */
@@ -476,11 +508,11 @@
     .hero-diego, .hero-cerezo { font-size: clamp(52px, 14vw, 80px); }
     .hero-name-wrap { gap: 10px; }
     .figma-handle { width: 6px; height: 6px; }
-    .figma-handle.tl { top: -8px; left: -12px; }
+    .figma-handle.tl { top: -8px; left: -6px; }
     .figma-handle.tr { top: -8px; right: -12px; }
-    .figma-handle.bl { bottom: -8px; left: -12px; }
+    .figma-handle.bl { bottom: -8px; left: -6px; }
     .figma-handle.br { bottom: -8px; right: -12px; }
-    .figma-select::before { inset: -4px -8px; }
+    .figma-select::before { inset: -4px -8px -4px -2px; }
     .figma-label { font-size: 8px; bottom: -22px; padding: 2px 6px; }
     .hero-sub { font-size: 15px; margin-top: 32px; }
     .hero-tools { gap: 6px; margin-top: 24px; }
@@ -896,6 +928,9 @@
 </head>
 <body data-theme="dark" data-accent="tangerine" data-show-labels="true">
 
+<!-- Skip to content link for keyboard/screen reader users -->
+<a href="#work" class="skip-link">Skip to work</a>
+
 <!-- Sticky pill nav -->
 <nav class="pill" id="pill">
   <a href="/" class="logo"><img src="/portfolio_logo.svg" alt="DC" style="width:22px;height:22px;"></a>
@@ -960,33 +995,29 @@
         <span class="tool-badge" style="--delay:0.9s">After Effects</span>
       </div>
 
-      <!-- Multiple collaborative cursors -->
+      <!-- Collaborative cursors — unlabeled -->
       <div class="hero-cursor cursor-diego">
         <svg width="18" height="22" viewBox="0 0 18 22" fill="none">
           <path d="M1 1L7 19L9.5 12.5L16 10L1 1Z" fill="var(--accent)" stroke="var(--accent-ink)" stroke-width="1"/>
         </svg>
-        <span class="cursor-label" style="background:var(--accent);color:var(--accent-ink);">Diego C.</span>
       </div>
 
       <div class="hero-cursor cursor-recruiter">
         <svg width="18" height="22" viewBox="0 0 18 22" fill="none">
           <path d="M1 1L7 19L9.5 12.5L16 10L1 1Z" fill="#7B61FF" stroke="#fff" stroke-width="1"/>
         </svg>
-        <span class="cursor-label" style="background:#7B61FF;color:#fff;">Recruiter</span>
       </div>
 
       <div class="hero-cursor cursor-friend">
         <svg width="18" height="22" viewBox="0 0 18 22" fill="none">
           <path d="M1 1L7 19L9.5 12.5L16 10L1 1Z" fill="#3ECF83" stroke="#fff" stroke-width="1"/>
         </svg>
-        <span class="cursor-label" style="background:#3ECF83;color:#0E0E0F;">Friends</span>
       </div>
 
       <div class="hero-cursor cursor-client">
         <svg width="18" height="22" viewBox="0 0 18 22" fill="none">
           <path d="M1 1L7 19L9.5 12.5L16 10L1 1Z" fill="#618ACC" stroke="#fff" stroke-width="1"/>
         </svg>
-        <span class="cursor-label" style="background:#618ACC;color:#fff;">Client</span>
       </div>
     </div>
 
@@ -1047,7 +1078,7 @@
           </div>
         </div>
         <div class="card__stage" style="padding:0;">
-          <img src="./CrewGalley_Cover_Card.png" alt="CrewGalley app screens" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
+          <img src="./CrewGalley_Cover_Card.png" alt="CrewGalley app screens" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
         </div>
         <div class="card__arrow" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -1064,7 +1095,7 @@
           </div>
         </div>
         <div class="card__stage" style="padding:0;">
-          <img src="./Venmo_Card_Cover.png" alt="Venmo redesign screens" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
+          <img src="./Venmo_Card_Cover.png" alt="Venmo redesign screens" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
         </div>
         <div class="card__arrow" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -1081,7 +1112,7 @@
           </div>
         </div>
         <div class="card__stage" style="padding:0;">
-          <img src="./hireflow_cover.png" alt="HireFlow dashboard screens" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
+          <img src="./hireflow_cover.png" alt="HireFlow dashboard screens" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
         </div>
         <div class="card__arrow" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -1098,7 +1129,7 @@
           </div>
         </div>
         <div class="card__stage" style="padding:0;">
-          <img src="./BRTR_cover_photo.png" alt="BRTR. Bartering Simplified" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
+          <img src="./BRTR_cover_photo.png" alt="BRTR. Bartering Simplified" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
         </div>
         <div class="card__arrow" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
