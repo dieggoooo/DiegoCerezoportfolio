@@ -17,6 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="/portfolio_logo.svg" type="image/svg+xml">
 <script>
   window.TWEAKS = /*EDITMODE-BEGIN*/{
     "accent": "tangerine",
@@ -808,25 +809,6 @@
   .exp-item .sub { color: var(--ink-soft); font-size: 13px; }
   .exp-item .yr { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.06em; }
 
-  /* ——— Writing ——— */
-  .writing { padding: 40px 0 100px; }
-  .writing ul { list-style: none; margin: 0; padding: 0; }
-  .writing li {
-    display: grid;
-    grid-template-columns: 56px 1fr auto;
-    align-items: center;
-    gap: 24px;
-    padding: 24px 0;
-    border-top: 1px solid var(--rule);
-    cursor: pointer;
-    transition: padding .3s;
-  }
-  .writing li:last-child { border-bottom: 1px solid var(--rule); }
-  .writing li:hover { padding-left: 12px; }
-  .writing li .n { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.1em; }
-  .writing li .t { font-family: var(--serif); font-size: clamp(20px, 2.2vw, 28px); line-height: 1.1; }
-  .writing li:hover .t { color: var(--accent); font-style: italic; }
-  .writing li .d { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.08em; text-transform: uppercase; }
 
   /* ——— Footer / contact ——— */
   .foot { padding: 80px 0 60px; border-top: 1px solid var(--rule); margin-top: 40px; }
@@ -844,7 +826,7 @@
   .foot__big a:hover { color: var(--accent); }
   .foot__row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 32px;
     padding-top: 32px;
     border-top: 1px solid var(--rule);
@@ -854,7 +836,8 @@
     text-transform: uppercase;
     color: var(--ink-soft);
   }
-  @media (max-width: 720px) { .foot__row { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 900px) { .foot__row { grid-template-columns: 1fr 1fr 1fr; } }
+  @media (max-width: 600px) { .foot__row { grid-template-columns: 1fr 1fr; } }
   .foot__row a { color: var(--ink); display: inline-block; margin-top: 6px; font-family: var(--sans); font-size: 14px; letter-spacing: 0; text-transform: none; }
   .foot__row a:hover { color: var(--accent); }
   .foot__colophon { margin-top: 64px; font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; display: flex; justify-content: space-between; }
@@ -889,53 +872,33 @@
   .tweaks .row button:hover { border-color: var(--ink-soft); }
   .tweaks .row button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 
-  /* ——— Visual work gallery ——— */
-  .gallery { padding: 40px 0 100px; }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 340px;
-    gap: 16px;
-  }
-  @media (max-width: 720px) { .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 280px; } }
-  .gallery-item {
-    position: relative;
-    border-radius: 18px;
-    overflow: hidden;
+  /* ——— Back to top ——— */
+  #back-top {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 44px; height: 44px;
+    border-radius: 999px;
+    background: var(--surface);
     border: 1px solid var(--rule);
+    color: var(--ink);
     cursor: pointer;
-    transition: border-color .3s, transform .4s cubic-bezier(.2,.8,.2,1);
+    display: grid; place-items: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s, background .2s, border-color .2s, transform .3s;
+    z-index: 50;
+    box-shadow: 0 4px 16px rgba(0,0,0,.25);
   }
-  .gallery-item:hover { border-color: rgba(242,238,230,.16); transform: translateY(-3px); }
-  .gallery-item--tall { grid-row: span 2; }
-  .gallery-item--wide { grid-column: span 2; }
-  @media (max-width: 520px) { .gallery-item--wide { grid-column: span 1; } }
-  .gallery-item img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform .6s cubic-bezier(.2,.8,.2,1);
-  }
-  .gallery-item:hover img { transform: scale(1.03); }
-  .gallery-item__overlay {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    padding: 16px 18px;
-    background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 100%);
-    pointer-events: none;
-  }
-  .gallery-item__cat {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-    margin-bottom: 4px;
-  }
-  .gallery-item__name {
-    font-size: 14px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.92);
+  #back-top.show { opacity: 1; pointer-events: auto; }
+  #back-top:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); transform: translateY(-2px); }
+
+  /* ——— Reduced motion ——— */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .reveal { opacity: 1; transform: none; }
   }
 </style>
 </head>
@@ -945,7 +908,7 @@
 <a href="#work" class="skip-link">Skip to work</a>
 
 <!-- Sticky pill nav -->
-<nav class="pill" id="pill">
+<nav class="pill" id="pill" aria-label="Main navigation">
   <a href="/" class="logo"><img src="/portfolio_logo.svg" alt="DC" style="width:22px;height:22px;"></a>
   <a href="#work">Work</a>
   <a href="#about">About</a>
@@ -1060,8 +1023,6 @@
         <span class="star">✦</span>
         <span>iOS · Next.js · Figma · Framer</span>
         <span class="star">✦</span>
-        <span>Open to Opportunities</span>
-        <span class="star">✦</span>
       </span>
       <span>
         <span>Selected Work 2021 – 2026</span>
@@ -1073,8 +1034,6 @@
         <span>Graphic Design</span>
         <span class="star">✦</span>
         <span>iOS · Next.js · Figma · Framer</span>
-        <span class="star">✦</span>
-        <span>Open to Opportunities</span>
         <span class="star">✦</span>
       </span>
     </div>
@@ -1095,7 +1054,7 @@
           </div>
         </div>
         <div class="card__stage" style="padding:0;">
-          <img src="./CrewGalley_Cover_Card.png" alt="CrewGalley app screens" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
+          <img src="./CrewGalley_Cover_Card.png" alt="CrewGalley app screens" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
         </div>
         <div class="card__arrow" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -1136,7 +1095,7 @@
         </div>
       </a>
 
-      <a class="card card--coral reveal" href="/BRTR_CaseStudy.html">
+      <a class="card card--navy reveal" href="/BRTR_CaseStudy.html">
         <div class="card__head">
           <div class="card__idx">04 / <em>UX Case Study</em></div>
           <div>
@@ -1162,10 +1121,10 @@
     <div class="exp-grid">
       <div class="exp-col reveal">
         <h5>Experience</h5>
-        <div class="exp-item"><div><div class="role">UX Designer</div><div class="sub">InFlight Logistics</div></div><div class="yr">25—</div></div>
-        <div class="exp-item"><div><div class="role">Graphic Design Intern</div><div class="sub">Federal Reserve Bank of Atlanta</div></div><div class="yr">24</div></div>
-        <div class="exp-item"><div><div class="role">Product Design Intern</div><div class="sub">Business Student Insider</div></div><div class="yr">23—24</div></div>
-        <div class="exp-item"><div><div class="role">UX/UI Design Intern</div><div class="sub">Plutonic</div></div><div class="yr">23</div></div>
+        <div class="exp-item"><div><div class="role">UX Designer</div><div class="sub">InFlight Logistics</div></div><div class="yr">2025–</div></div>
+        <div class="exp-item"><div><div class="role">Graphic Design Intern</div><div class="sub">Federal Reserve Bank of Atlanta</div></div><div class="yr">2024</div></div>
+        <div class="exp-item"><div><div class="role">Product Design Intern</div><div class="sub">Business Student Insider</div></div><div class="yr">2023–24</div></div>
+        <div class="exp-item"><div><div class="role">UX/UI Design Intern</div><div class="sub">Plutonic</div></div><div class="yr">2023</div></div>
       </div>
       <div class="exp-col reveal">
         <h5>Education</h5>
@@ -1188,9 +1147,10 @@
     <h2 class="foot__big reveal">Have something in the works? <em>Let's</em> <a href="mailto:diegotcerezo@gmail.com">talk</a>.</h2>
     <div class="foot__row reveal">
       <div>Email<a href="mailto:diegotcerezo@gmail.com">diegotcerezo@gmail.com</a></div>
-      <div>LinkedIn<a href="https://www.linkedin.com/in/diego-cerezo-02049b206/" target="_blank">LinkedIn ↗</a></div>
-      <div>Book a Call<a href="https://cal.com/diego-cerezo-fh9v2v/30min" target="_blank">Schedule 30 min ↗</a></div>
-      <div>Résumé<a href="https://drive.google.com/file/d/108-bYvF4tCYD6BNVcP0ultki-DhZj5DG/view?usp=sharing" target="_blank">Download PDF ↗</a></div>
+      <div>LinkedIn<a href="https://www.linkedin.com/in/diego-cerezo-02049b206/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
+      <div>GitHub<a href="https://github.com/dieggoooo" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+      <div>Book a Call<a href="https://cal.com/diego-cerezo-fh9v2v/30min" target="_blank" rel="noopener noreferrer">Schedule 30 min ↗</a></div>
+      <div>Résumé<a href="https://drive.google.com/file/d/108-bYvF4tCYD6BNVcP0ultki-DhZj5DG/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download PDF ↗</a></div>
     </div>
     <div class="foot__colophon">
       <span>© Diego Cerezo · 2026</span>
@@ -1200,6 +1160,11 @@
 
   </div><!-- /wrap -->
 </main>
+
+<!-- Back to top -->
+<button id="back-top" aria-label="Back to top">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
 
 <!-- Tweaks panel -->
 <div class="tweaks" id="tweaks">
@@ -1293,6 +1258,13 @@
       pill.style.opacity = '1';
     }
   }, { passive: true });
+
+  // Back to top
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('show', window.scrollY > 400);
+  }, { passive: true });
+  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
   // Clock. Atlanta time
   function tickClock() {
