@@ -871,6 +871,58 @@
   .tweaks .row button:hover { border-color: var(--ink-soft); }
   .tweaks .row button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 
+  /* ——— Outside Design ——— */
+  .outside { padding: 40px 0 100px; }
+  .outside-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 64px;
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (max-width: 820px) { .outside-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .outside-col h5 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 20px;
+    font-weight: 400;
+  }
+  .outside-bio {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.65;
+    margin: 0 0 24px;
+    max-width: 36ch;
+  }
+  .outside-activities {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .outside-activities span {
+    padding: 7px 16px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .country-list {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .country-pill {
+    padding: 5px 12px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    transition: border-color .2s, color .2s;
+  }
+  .country-pill:hover { border-color: var(--accent); color: var(--ink); }
+
   /* ——— Back to top ——— */
   #back-top {
     position: fixed;
@@ -1137,6 +1189,53 @@
         <div class="exp-item"><div class="role">Next.js, TypeScript, HTML/CSS</div><div class="yr">Weekly</div></div>
         <div class="exp-item"><div class="role">Supabase, Capacitor, Xcode</div><div class="yr">Regular</div></div>
         <div class="exp-item"><div class="role">Notion, Linear, Claude</div><div class="yr">Always</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ——— Outside Design ——— -->
+  <section class="outside">
+    <div class="section-label reveal">Outside of Design</div>
+    <div class="outside-grid">
+      <div class="outside-col reveal">
+        <h5>When I'm not designing</h5>
+        <p class="outside-bio">You'll find me outdoors — hiking trails, scaling walls, or on a pickleball court. Pool is my slowdown. If it's outside, I'm in.</p>
+        <div class="outside-activities">
+          <span>Hiking</span>
+          <span>Rock Climbing</span>
+          <span>Pickleball</span>
+          <span>Pool</span>
+        </div>
+      </div>
+      <div class="outside-col reveal d1">
+        <h5>25 countries &amp; counting</h5>
+        <div class="country-list">
+          <span class="country-pill">USA</span>
+          <span class="country-pill">Canada</span>
+          <span class="country-pill">Mexico</span>
+          <span class="country-pill">Panama</span>
+          <span class="country-pill">Cuba</span>
+          <span class="country-pill">Jamaica</span>
+          <span class="country-pill">Bahamas</span>
+          <span class="country-pill">El Salvador</span>
+          <span class="country-pill">Curaçao</span>
+          <span class="country-pill">Brazil</span>
+          <span class="country-pill">Italy</span>
+          <span class="country-pill">Vatican City</span>
+          <span class="country-pill">France</span>
+          <span class="country-pill">Spain</span>
+          <span class="country-pill">Germany</span>
+          <span class="country-pill">Belgium</span>
+          <span class="country-pill">Norway</span>
+          <span class="country-pill">England</span>
+          <span class="country-pill">Ireland</span>
+          <span class="country-pill">Malta</span>
+          <span class="country-pill">Australia</span>
+          <span class="country-pill">Singapore</span>
+          <span class="country-pill">Thailand</span>
+          <span class="country-pill">Nepal</span>
+          <span class="country-pill">Vietnam</span>
+        </div>
       </div>
     </div>
   </section>
